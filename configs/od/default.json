@@ -1,0 +1,37 @@
+{
+    "train_split_dir": "data/train_split/",
+    "train_od_dir": "data/train_od/",
+    "n_jobs": 5,
+    "od_methods": [
+        {
+            "name": "KDN",
+            "parameters": {
+                "n_neighbors": 1
+            }
+        },
+		{
+            "name": "KDN",
+            "parameters": {
+                "n_neighbors": 2
+            }
+        },
+		{
+            "name": "KDN",
+            "parameters": {
+                "n_neighbors": 3
+            }
+        },
+		{
+            "name": "KDN",
+            "parameters": {
+                "n_neighbors": 5
+            }
+        },
+		{
+            "name": "KDN",
+            "parameters": {
+                "n_neighbors": 10
+            }
+        }
+    ]
+}
