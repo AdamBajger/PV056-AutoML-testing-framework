@@ -16,4 +16,7 @@ now
 { pv056-remove-outliers  -c configs/rm_o/default.json -d datasets.csv & > "scripts/log-$NOW-rm_o.log"; } &
 wait
 echo "RM O completed $NOW"
+now
+
+{  } &
 deactivate
