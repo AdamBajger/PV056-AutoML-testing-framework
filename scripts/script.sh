@@ -6,6 +6,8 @@ now(){
 }
 now
 # pv056-split-data -c configs/split/default.json -d datasets.csv > "scripts/log-$NOW-split.log"
+wait
 now
 pv056-apply-od-methods -c config/od/default.json > "scripts/log-$NOW-od.log"
+wait
 deactivate
