@@ -1,6 +1,6 @@
 {
     "train_split_dir": "data/train_split/",
-    "train_od_dir": "/var/tmp/xbajger/BAKPR/train_od/",
+    "train_od_dir": "/var/tmp/xbajger/BAKPR/data/train_od/",
     "n_jobs": 5,
     "od_methods": [
         {
