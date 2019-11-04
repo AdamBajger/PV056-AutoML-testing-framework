@@ -1,5 +1,6 @@
 import argparse
 import json
+import sys
 
 
 def main():
@@ -35,30 +36,39 @@ def main():
     filename_csv_output = args["output-csv"]
 
     dict_json_files = dict()
-    with open(filename_csv_input) as accFile, open(filename_csv_output, "w") as accFileNew:
-        line = accFile.readline()
-        arr_column = line.split(",")
-        index_column_od_configuration = arr_column.index(colname_od_config)
-        for line in accFile:
-            arr_data = line.split(",")
-            if not len(arr_data) > 1:  # here we check for the final newline in the csv to skip it
-                continue
-            json_od_hash = arr_data[index_column_od_configuration]
-            classifier = arr_data[arr_column.index(colname_classifier)].split(".")[-1]
+    try:
+        with open(filename_csv_input) as accFile, open(filename_csv_output, "w") as accFileNew:
+            line = accFile.readline()
+            arr_column = line.split(",")
+            index_column_od_configuration = arr_column.index(colname_od_config)
+            for line in accFile:
+                arr_data = line.split(",")
+                if not len(arr_data) > 1:  # here we check for the final newline in the csv to skip it
+                    continue
+                json_od_hash = arr_data[index_column_od_configuration]
+                classifier = arr_data[arr_column.index(colname_classifier)].split(".")[-1]
 
-            if json_od_hash not in dict_json_files:
-                dict_json_files[json_od_hash] = open(
-                    filename_od_json_directory + ("" if filename_od_json_directory[-1] == "/" else "/") +
-                    classifier + "_" + json_od_hash + ".json", "r", encoding="UTF-8")
-            else:
-                dict_json_files[json_od_hash].seek(0)
+                if json_od_hash not in dict_json_files:
+                    dict_json_files[json_od_hash] = open(
+                        filename_od_json_directory + ("" if filename_od_json_directory[-1] == "/" else "/") +
+                        classifier + "_" + json_od_hash + ".json", "r", encoding="UTF-8")
+                else:
+                    dict_json_files[json_od_hash].seek(0)
 
-            # print(line)
+                # print(line)
 
-            od_config = json.load(dict_json_files[json_od_hash])  # loads json configuration as a dict
-            od_configuration_human_readable = str.join(";", ['"{}":"{}"'.format(k, v) for k, v in
-                                                             od_config["ad_config"]["parameters"].items()])
-            arr_data[index_column_od_configuration] = od_configuration_human_readable
+                od_config = json.load(dict_json_files[json_od_hash])  # loads json configuration as a dict
+                od_configuration_human_readable = str.join(";", ['"{}":"{}"'.format(k, v) for k, v in
+                                                                 od_config["ad_config"]["parameters"].items()])
+                arr_data[index_column_od_configuration] = od_configuration_human_readable
 
-            # print(str.join(",", dataArr))
-            accFileNew.write(str.join(",", arr_data))
+                # print(str.join(",", dataArr))
+                accFileNew.write(str.join(",", arr_data))
+    except KeyboardInterrupt:
+        print("\nInterupted!", flush=True, file=sys.stderr)
+
+    print("Done")
+
+
+if __name__ == "__main__":
+    main()
