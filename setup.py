@@ -18,6 +18,7 @@ setup(
             "pv056-remove-outliers=pv056_2019.remove_outliers:main",
             "pv056-run-clf=pv056_2019.main_clf:main",
             "pv056-statistics=pv056_2019.statistics:main",
+            "pv056-transform-accurracy-csv=pv056_2019.replace_od_parameter_in_accurracy_csv:main"
         ]
     },
     zip_safe=False,
