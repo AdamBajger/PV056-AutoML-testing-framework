@@ -9,14 +9,16 @@ now
 wait
 echo "SPLIT completed $NOW"
 now
-{ pv056-apply-od-methods -c configs/od/default.json > "scripts/log-$NOW-od.log"; } &
+#{ pv056-apply-od-methods -c configs/od/default.json > "scripts/log-$NOW-od.log"; } &
 wait
 echo "OD completed $NOW"
 now
-{ pv056-remove-outliers  -c configs/rm_o/default.json -d datasets.csv & > "scripts/log-$NOW-rm_o.log"; } &
+#{ pv056-remove-outliers  -c configs/rm_o/default.json -d datasets.csv > "scripts/log-$NOW-rm_o.log"; } &
 wait
 echo "RM O completed $NOW"
 now
 
-{  } &
+{ pv056-run-clf -c configs/clf/default.json -d datasets.csv > "scripts/log-$NOW-clf.log"; } &
+wait
+echo "CLF completed"
 deactivate

@@ -1,7 +1,7 @@
 {
     "output_folder": "/var/tmp/xbajger/BAKPR/clf_outputs/",
     "weka_jar_path": "weka-3-8-3/weka.jar",
-    "n_jobs": 2,
+    "n_jobs": 20,
     "classifiers": [
         {
             "class_name": "weka.classifiers.trees.J48"
@@ -44,6 +44,24 @@
         },
         {
             "class_name": "weka.classifiers.functions.SMO"
+        },
+	{
+	    "class_name": "weka.classifiers.meta.AdaBoostM1"
+	},
+	{
+	    "class_name": "weka.classifiers.rules.DecisionTable"
+	},
+	{
+	    "class_name": "weka.classifiers.trees.LMT"
+	},
+	{
+	    "class_name": "weka.classifiers.trees.REPTree"
+	},
+	{
+            "class_name": "weka.classifiers.functions.SGD"
+        },
+        {
+            "class_name": "weka.classifiers.rules.ZeroR"
         }
     ]
 }
