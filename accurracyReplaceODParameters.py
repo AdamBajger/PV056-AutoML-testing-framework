@@ -29,12 +29,12 @@ def main():
         help="Name of a directory containing JSON files for CLF outputs (usually same directory as CLF outputs are in)",
     )
     args = vars(parser.parse_args())
-    print(args)
+    #print(args)
     colname_od_config = "Configuration"
     colname_classifier = "Classifier"
-    filename_od_json_directory = args["od-jsons-dir"]
-    filename_csv_input = args["input-csv"]
-    filename_csv_output = args["output-csv"]
+    filename_od_json_directory = args["od_jsons_dir"]
+    filename_csv_input = args["input_csv"]
+    filename_csv_output = args["output_csv"]
 
     dict_json_files = dict()
     try:
