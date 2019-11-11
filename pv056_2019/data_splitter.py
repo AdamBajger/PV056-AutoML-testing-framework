@@ -34,7 +34,7 @@ def main():
         for dataframe in data_loader.load_files():
             print("Splitting:", dataframe._arff_data["relation"], flush=True)
             dataframe = dataframe.add_index_column()
-            kfold = KFold(n_splits=5, shuffle=True, random_state=42)
+            kfold = KFold(n_splits=conf.n_splits, shuffle=True, random_state=42)
             for index, data_fold in enumerate(kfold.split(dataframe.index.values)):
                 train_index, test_index = data_fold
 

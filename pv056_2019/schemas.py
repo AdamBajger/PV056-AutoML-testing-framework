@@ -9,6 +9,7 @@ class SplitterSchema(BaseModel):
     train_split_dir: str
     test_split_dir: str
     data_path: str
+    n_splits: int = 5
 
 
 class OutlierDetectorSchema(BaseModel):
